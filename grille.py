@@ -96,6 +96,7 @@ class Grille:
         json.dump(self.m, fichier, indent=4, sort_keys=True)
         fichier.close()
 
+
     def ajouterIndice(self,p,l,c):
         self.mIndi[l][c].append(p)
 
@@ -103,4 +104,17 @@ class Grille:
         for i in range(len(self.mIndi[l][c])):
             print(self.mIndi[l][c][i])
 
-    
+
+    def VerifPossibilite(self,l,c):
+        n = self.n
+        tab = []
+
+        for i in  range(n):
+            i = i +1
+            if self.proposer(i,l,c):
+                tab.append(i)
+
+        for y in range(len(tab)):
+            print (tab[y])
+
+
