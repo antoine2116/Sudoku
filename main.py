@@ -2,7 +2,7 @@ from grille import *
 
 grille = Grille(9)
 grille.afficher()
-
+"""
 # Test reussite
 if grille.proposer(6, 1, 4):
     print("Bravo ! \n")
@@ -19,3 +19,4 @@ else:
 
 grille.afficher()
 grille.sauvegarder()
+"""
