@@ -11,14 +11,16 @@ class Grille:
         path_indices = 'grilles/joueurs/grilleIndices' + str(n) + '.json'
         path_solution = 'grilles/solutions/grille_' + str(n) + '.json'
 
-        # Si on a un fichier jouer, on l'ouvre
+        # Si on a un fichier joueur, on l'ouvre
         if os.path.isfile(path_joueur):
             fichier = open(path_joueur, 'r')
-            fichierIncides = open(path_indices, 'r')
 
         # Sinon, on ouvre le fichier solution (fichier vide)
         elif os.path.isfile(path_solution):
             fichier = open(path_solution, 'r')
+
+        #On prépare les indices
+        fichierIncides = open(path_indices, 'r')
 
         self.m = json.load(fichier)
         self.mIndi = json.load(fichierIncides)
@@ -43,9 +45,26 @@ class Grille:
                         ligne += "0 "
                 print(ligne)
 
+        if self.n == 16:
+            for l in range(self.n):
+                ligne = ""
+                if l == 4 or l == 8 or l == 12:
+                    print("-------------------------------------")
+                for c in range(self.n):
+                    if c == 4 or c == 8 or c == 12:
+                        ligne += "| "
+                    if self.m[l][c] > 0:
+                        if self.m[l][c] > 9:
+                            ligne += self.convertisseur(self.m[l][c]) + " "
+                        else:
+                            ligne += str(self.m[l][c]) + " "
+                    else:
+                        ligne += "0 "
+                print(ligne)
+
     #Permet de passer les nombres en lettre
     def convertisseur(self, chiffre):
-        lettres = ["","","","","","","","","","A","B","C","D","E","F"]
+        lettres = ["","","","","","","","","","A","B","C","D","E","F","G"]
         return lettres[chiffre-1]
 
     # Permet de savoir si la grille est resolue
