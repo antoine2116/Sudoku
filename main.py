@@ -1,6 +1,6 @@
 from grille import *
 
-grille = Grille(9)
+grille = Grille(16)
 grille.afficher()
 """
 # Test reussite
