@@ -3,9 +3,13 @@ class Theme:
         'background-color : #17181c;'
     )
 
+    menu_bar = (
+        'background-color : #858585;'
+    )
+
     cellule_valeur = (
         'QLineEdit {'
-            'color: #242424;'
+            'color: #062673;'
             'font-size: 20pt;'
             'background-color :white;'
             'border: none;'
@@ -13,6 +17,12 @@ class Theme:
        
         'QLineEdit::hover {'
             'background-color : #e6e6e6;'
+        '}'
+    )
+
+    cellule_valeur_fixed = (
+        'QLineEdit {'
+            'color: #242424 !important;'
         '}'
     )
 

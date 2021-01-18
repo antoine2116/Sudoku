@@ -12,13 +12,15 @@ class CelluleValeur(QLineEdit):
     def __init__(self, fixed, valeur, theme=Theme()):
         super(QLineEdit, self).__init__()
         self.theme = theme
-        self.setStyleSheet(self.theme.cellule_valeur)
         self.setAlignment(Qt.AlignCenter)
         self.setFixedSize(60, 60)
         self.setCursor(QCursor(Qt.PointingHandCursor))
         self.setContextMenuPolicy(Qt.NoContextMenu)
         self.fixed = fixed
-        self.setValue(valeur)
+        self.value = "" if valeur == 0 else str(valeur)
+        self.setText(self.value)
+
+        self.updateTextColor()
 
     def focusInEvent(self, event):
         if not self.fixed:
@@ -32,4 +34,13 @@ class CelluleValeur(QLineEdit):
         else:
             self.setText("")
             self.value = ""
+
+    def updateTextColor(self):
+        style = self.theme.cellule_valeur
+        if self.fixed:
+            self.setStyleSheet(self.theme.cellule_valeur + self.theme.cellule_valeur_fixed)
+        else:
+            self.setStyleSheet(self.theme.cellule_valeur)
+
+
 

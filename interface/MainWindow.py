@@ -1,41 +1,33 @@
-from PyQt5.QtWidgets import QWidget, QHBoxLayout
+from PyQt5.QtWidgets import QMainWindow
 
-from interface.controls_components.Controls import Controls
-from interface.grille_components.Grille import Grille
+from interface.MainWidget import MainWidget
 from interface.tools.theme import Theme
 
 
-class MainWindow(QWidget):
+class MainWindow(QMainWindow):
     def __init__(self, matrix, theme=Theme()):
         super().__init__()
         self.theme = theme
-        self.setStyleSheet(self.theme.main_background)
         self.setFixedSize(900, 600)
         self.setWindowTitle('ZEBI LE SUDOKU')
+        self.setStyleSheet(self.theme.main_background)
 
-        self.box_layout = QHBoxLayout()
-        self.setLayout(self.box_layout)
+        self.main_widget = MainWidget(matrix)
+        self.setCentralWidget(self.main_widget)
 
-        self.controls = Controls()
-        self.grille = Grille(matrix)
+        self.initMenu()
 
-        self.box_layout.addWidget(self.grille)
-        self.box_layout.addWidget(self.controls)
+    def initMenu(self):
+        bar = self.menuBar()
+        bar.setStyleSheet(self.theme.menu_bar)
 
-        self.connectControls()
+        partie = bar.addMenu("Partie")
+        partie.addAction("Nouvelle Partie")
+        partie.addAction("Sauvegarder")
+        partie.addAction("Quitter")
 
-    def connectControls(self):
-        # Button d'affichage des indices
-        self.controls.btn_aff_indice.clicked.connect(self.grille.toggleCellsDisplay)
-        self.controls.btn_aff_indice.clicked.connect(self.controls.btn_aff_indice.toggleClicked)
-
-        # Pavé numérique
-        for button_valeur in self.controls.btns_numero:
-            button_valeur.clicked.connect(
-                lambda ignore, x=button_valeur.valeur: self.grille.updateCellValue(str(x)))
-
-
-
-
+        resoudre = bar.addMenu("Résoudre")
+        resoudre.addAction("Brute Force")
+        resoudre.addAction("Back Track")
 
 
