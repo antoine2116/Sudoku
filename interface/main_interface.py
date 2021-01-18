@@ -2,6 +2,7 @@ import sys
 import json
 
 from PyQt5.QtWidgets import QApplication
+from interface.MainWidget import MainWidget
 from interface.MainWindow import MainWindow
 
 
