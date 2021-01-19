@@ -5,7 +5,7 @@ from interface.grille_components.Grille import Grille
 from interface.tools.theme import Theme
 
 
-class MainWidget(QWidget):
+class JeuWidget(QWidget):
     def __init__(self, matrix, theme=Theme()):
         super().__init__()
         self.theme = theme

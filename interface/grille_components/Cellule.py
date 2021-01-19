@@ -14,13 +14,13 @@ class Cellule(QGridLayout):
         self.setSpacing(0)
         self.theme = theme
         self.data = cell_data
-        self.fixed = self.data["afficher_solution"]
+        self.fixed = self.data["afficher_solution"] or self.data["verifie"]
         self.generateComponents()
         self.displayValeur()
 
     def generateComponents(self):
         if self.fixed:
-            self.cell_valeur = CelluleValeur(True, self.data["solution"])
+            self.cell_valeur = CelluleValeur(True, self.data["solution"], self.data["verifie"])
         else:
             self.cell_valeur = CelluleValeur(False, self.data["joueur"])
         self.cell_valeur.selected_signal.connect(self.selectCell)
