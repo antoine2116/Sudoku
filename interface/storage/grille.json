@@ -4,55 +4,64 @@
             "indices": [],
             "joueur": 0,
             "solution": 4,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 3,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
-            "indices": [2,8,9],
-            "joueur": 0,
+            "indices": [],
+            "joueur": 8,
             "solution": 9,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
+        },
+        {
+            "indices": [],
+            "joueur": 4,
+            "solution": 6,
+            "afficher_solution": false,
+            "verifie": true
         },
         {
             "indices": [],
             "joueur": 0,
-            "solution": 6,
-            "afficher_solution": false
-        },
-        {
-            "indices": [1,2,8],
-            "joueur": 0,
             "solution": 1,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 2,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 5,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 7,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 8,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         }
     ],
     [
@@ -60,55 +69,64 @@
             "indices": [],
             "joueur": 0,
             "solution": 6,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 7,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 1,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 5,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
-            "indices": [2,3,4,5,9],
+            "indices": [],
             "joueur": 0,
             "solution": 8,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 3,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 4,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 2,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 9,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         }
     ],
     [
@@ -116,55 +134,64 @@
             "indices": [],
             "joueur": 0,
             "solution": 2,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 5,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 8,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 4,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 9,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 7,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 6,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 1,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 3,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         }
     ],
     [
@@ -172,55 +199,64 @@
             "indices": [],
             "joueur": 0,
             "solution": 8,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 2,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 5,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 7,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 4,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 1,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
-            "indices": [],
+            "indices": [1,2,9],
             "joueur": 0,
             "solution": 3,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 9,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 6,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         }
     ],
     [
@@ -228,55 +264,64 @@
             "indices": [],
             "joueur": 0,
             "solution": 7,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 6,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 4,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 2,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
-            "indices": [1],
+            "indices": [],
             "joueur": 0,
             "solution": 3,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 9,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 1,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 8,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 5,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         }
     ],
     [
@@ -284,55 +329,64 @@
             "indices": [],
             "joueur": 0,
             "solution": 1,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 9,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 3,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 8,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 6,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 5,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 7,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 4,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 2,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         }
     ],
     [
@@ -340,55 +394,64 @@
             "indices": [],
             "joueur": 0,
             "solution": 3,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 1,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 6,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 9,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 2,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 4,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 8,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 5,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 7,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         }
     ],
     [
@@ -396,55 +459,64 @@
             "indices": [],
             "joueur": 0,
             "solution": 5,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 8,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 2,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 1,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 7,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 6,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 9,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 3,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 4,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         }
     ],
     [
@@ -452,55 +524,64 @@
             "indices": [],
             "joueur": 0,
             "solution": 9,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 4,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 7,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 3,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 5,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 8,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 2,
-            "afficher_solution": false
+            "afficher_solution": false,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 6,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         },
         {
             "indices": [],
             "joueur": 0,
             "solution": 1,
-            "afficher_solution": true
+            "afficher_solution": true,
+            "verifie": false
         }
     ]
 ]

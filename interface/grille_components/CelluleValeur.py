@@ -1,7 +1,6 @@
 from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QCursor
 from PyQt5.QtWidgets import QLineEdit
-
 from interface.tools.theme import Theme
 
 
@@ -9,7 +8,7 @@ class CelluleValeur(QLineEdit):
     selected_signal = pyqtSignal()
     value = ""
 
-    def __init__(self, fixed, valeur, theme=Theme()):
+    def __init__(self, fixed, valeur, verifie=False, theme=Theme()):
         super(QLineEdit, self).__init__()
         self.theme = theme
         self.setAlignment(Qt.AlignCenter)
@@ -17,10 +16,14 @@ class CelluleValeur(QLineEdit):
         self.setCursor(QCursor(Qt.PointingHandCursor))
         self.setContextMenuPolicy(Qt.NoContextMenu)
         self.fixed = fixed
+        self.verifie = verifie
         self.value = "" if valeur == 0 else str(valeur)
         self.setText(self.value)
 
         self.updateTextColor()
+
+    def keyPressEvent(self, event):
+        return
 
     def focusInEvent(self, event):
         if not self.fixed:
@@ -36,9 +39,10 @@ class CelluleValeur(QLineEdit):
             self.value = ""
 
     def updateTextColor(self):
-        style = self.theme.cellule_valeur
         if self.fixed:
             self.setStyleSheet(self.theme.cellule_valeur + self.theme.cellule_valeur_fixed)
+            if self.verifie:
+                self.setStyleSheet(self.theme.cellule_valeur + self.theme.cellule_valeur_verifie)
         else:
             self.setStyleSheet(self.theme.cellule_valeur)
 

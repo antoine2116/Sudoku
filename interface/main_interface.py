@@ -2,7 +2,8 @@ import sys
 import json
 
 from PyQt5.QtWidgets import QApplication
-from interface.MainWidget import MainWidget
+
+from interface.GenerateurGrille import GenerateurGrille
 from interface.MainWindow import MainWindow
 
 
@@ -11,7 +12,7 @@ def main():
         m = json.load(file)
 
     app = QApplication(sys.argv)
-    ex = MainWindow(m)
+    ex = MainWindow()
     ex.show()
     sys.exit(app.exec_())
 
