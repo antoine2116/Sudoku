@@ -49,7 +49,7 @@ class Theme:
     cellule_valeur = (
         'QLineEdit {'
         'color: #062673;'
-        'font-size: 20pt;'
+        'font-size: 17pt;'
         'background-color :white;'
         'border: none;'
         '}'

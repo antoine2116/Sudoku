@@ -5,41 +5,38 @@ from interface.grille_components.CelluleValeur import CelluleValeur
 from interface.grille_components.CelluleIndice import CelluleIndice
 from interface.tools.theme import Theme
 
+
 class Cellule(QGridLayout):
     selected = False
     selected_signal = pyqtSignal()
 
-    def __init__(self, cell_data, theme=Theme()):
+    def __init__(self, cell_data, divider, theme=Theme()):
         super(QGridLayout, self).__init__()
         self.setSpacing(0)
         self.theme = theme
-        self.data = cell_data
-        self.fixed = self.data["afficher_solution"] or self.data["verifie"]
+        self.cell_data = cell_data
+        self.divider = divider
+        self.fixed = self.cell_data["afficher_solution"] or self.cell_data["verifie"]
         self.generateComponents()
         self.displayValeur()
 
     def generateComponents(self):
         if self.fixed:
-            self.cell_valeur = CelluleValeur(True, self.data["solution"], self.data["verifie"])
+            self.cell_valeur = CelluleValeur(True, self.cell_data["solution"], self.cell_data["verifie"])
         else:
-            self.cell_valeur = CelluleValeur(False, self.data["joueur"])
+            self.cell_valeur = CelluleValeur(False, self.cell_data["joueur"])
         self.cell_valeur.selected_signal.connect(self.selectCell)
 
         self.cells_indices = []
-
         if not self.fixed:
-            cpt = 1
             for i in range(0, 3):
-                li = []
                 for y in range(0, 3):
-                    if i in self.data["indices"]:
-                        cell_indice = CelluleIndice(cpt)
+                    if i+y < len(self.cell_data["indices"]):
+                        cell_indice = CelluleIndice(i + y)
                     else:
                         cell_indice = CelluleIndice()
                     cell_indice.selected_signal.connect(self.selectCell)
-                    li.append(cell_indice)
-                    cpt = cpt + 1
-                self.cells_indices.append(li)
+                    self.cells_indices.append(cell_indice)
 
     def displayValeur(self):
         self.removeAllWidgets()
@@ -48,12 +45,14 @@ class Cellule(QGridLayout):
     def displayIndices(self):
         if not self.fixed:
             self.removeAllWidgets()
+            cpt = 0
             for i in range(0, 3):
                 for y in range(0, 3):
-                    self.addWidget(self.cells_indices[i][y], i, y)
+                    self.addWidget(self.cells_indices[cpt], i, y)
+                    cpt = cpt + 1
 
     def toggleCellDisplay(self):
-        if self.count() == 1 and self.cell_valeur.value == "":
+        if self.count() == 1 and self.cell_valeur.value == 0:
             self.displayIndices()
         else:
             self.displayValeur()
@@ -65,31 +64,28 @@ class Cellule(QGridLayout):
     def selectCell(self):
         self.selected = True
         self.cell_valeur.setStyleSheet(self.theme.cellule_valeur + self.theme.cellule_valeur_focused)
-        for i in range(0, 3):
-            for y in range(0, 3):
-                self.cells_indices[i][y].setStyleSheet(self.theme.cellule_indice + self.theme.cellule_indice_focused)
+        for cell_indice in self.cells_indices:
+            cell_indice.setStyleSheet(self.theme.cellule_indice + self.theme.cellule_indice_focused)
         self.selected_signal.emit()
 
     def unselect(self):
         self.selected = False
         self.cell_valeur.setStyleSheet(self.theme.cellule_valeur)
-        for i in range(0, 3):
-            for y in range(0, 3):
-                self.cells_indices[i][y].setStyleSheet(self.theme.cellule_indice)
+        for cell_indice in self.cells_indices:
+            cell_indice.setStyleSheet(self.theme.cellule_indice)
 
     def updateValue(self, valeur):
         if self.count() == 1:
             self.cell_valeur.setValue(valeur)
         else:
-            cpt = 1
-            for i in range(0, 3):
-                for y in range(0, 3):
-                    if str(cpt) == valeur:
-                        if self.cells_indices[i][y].text == valeur:
-                            self.cells_indices[i][y].setValue("")
-                        else:
-                            self.cells_indices[i][y].setValue(valeur)
-                    cpt = cpt + 1
+            existing_indice = next((cell for cell in self.cells_indices if cell.value == valeur), None)
+            if existing_indice is not None:
+                existing_indice.setValue(0)
+            else:
+                empty_indice = next((cell for cell in self.cells_indices if cell.value == 0), None)
+                if empty_indice is not None:
+                    empty_indice.setValue(valeur)
+
 
 
 

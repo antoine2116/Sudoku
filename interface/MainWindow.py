@@ -5,24 +5,24 @@ from PyQt5.QtWidgets import QMainWindow, QAction, qApp, QMenu
 from interface.GenerateurGrille import GenerateurGrille
 from interface.pages.AccueilWidget import AccueilWidget
 from interface.pages.JeuWidget import JeuWidget
+from interface.tools.Dimensions import Dimensions
 from interface.tools.theme import Theme
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, theme=Theme()):
+    def __init__(self, theme=Theme(), dim=Dimensions()):
         super().__init__()
         self.theme = theme
-        self.setFixedSize(900, 600)
+        self.dim = dim
         self.setWindowTitle('Soduku')
         self.setStyleSheet(self.theme.main_background)
-
         self.accueil_widget = AccueilWidget()
         self.setCentralWidget(self.accueil_widget)
         self.initAccueilEvents()
 
     def initAccueilEvents(self):
         self.accueil_widget.btn_9x9.clicked.connect(partial(self.nouvellePartieCallback, 9))
-        #self.accueil_widget.btn_16x16.clicked.connect(partial(self.nouvellePartieCallback, 16))
+        self.accueil_widget.btn_16x16.clicked.connect(partial(self.nouvellePartieCallback, 16))
 
     def initMenu(self):
         bar = self.menuBar()
@@ -56,13 +56,15 @@ class MainWindow(QMainWindow):
 
     def nouvellePartieCallback(self, n):
         generateur = GenerateurGrille(n)
-        grille = generateur.generate()
-        self.startJeuWidget(grille)
+        data = generateur.generate()
+        self.setFixedSize(self.dim.window_w[str(n)], self.dim.window_h[str(n)])
+        self.startJeuWidget(data)
 
     def sauvegarderCallback(self):
         print("aaaa")
 
-    def startJeuWidget(self, grille):
-        self.jeu_widget = JeuWidget(grille)
+    def startJeuWidget(self, data):
+        self.jeu_widget = JeuWidget(data)
         self.setCentralWidget(self.jeu_widget)
         self.initMenu()
+

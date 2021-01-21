@@ -1,9 +1,9 @@
 from interface.controls_components.Button import Button
-from interface.tools.theme import Theme
 
 
 class ButtonValeur(Button):
-    def __init__(self, valeur, theme=Theme()):
+    def __init__(self, valeur):
         super().__init__()
-        self.valeur = (str(valeur))
-        self.setText(self.valeur)
+        symbols = ["", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G"]
+        self.setText(symbols[valeur])
+        self.valeur = valeur

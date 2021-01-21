@@ -28,7 +28,7 @@ class GenerateurGrille:
         for p in sample(range(blocks), empties):
             self.grille[p // self.n][p % self.n] = 0
 
-        # On convertit la matric en json
+        # On convertit la matrix en json
         grille_data = []
         for x in range(0, self.n):
             line = []
@@ -43,4 +43,11 @@ class GenerateurGrille:
                 line.append(cell)
             grille_data.append(line)
 
-        return grille_data
+        # On crée le fichier
+        soduku_data = {
+            "n": self.n,
+            "divider": self.divider,
+            "grille": grille_data
+        }
+
+        return soduku_data

@@ -6,15 +6,16 @@ from interface.tools.theme import Theme
 
 
 class JeuWidget(QWidget):
-    def __init__(self, matrix, theme=Theme()):
+    def __init__(self, data, theme=Theme()):
         super().__init__()
         self.theme = theme
 
         self.box_layout = QHBoxLayout()
         self.setLayout(self.box_layout)
 
-        self.controls = Controls()
-        self.grille = Grille(matrix)
+
+        self.controls = Controls(data["divider"])
+        self.grille = Grille(data)
 
         self.box_layout.addWidget(self.grille)
         self.box_layout.addWidget(self.controls)

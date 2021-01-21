@@ -1,19 +1,20 @@
 from PyQt5.QtWidgets import QWidget, QGridLayout
 from interface.grille_components.Cellule import Cellule
+from interface.tools.Dimensions import Dimensions
 from interface.tools.theme import Theme
 import math
 
 class Grille(QWidget):
     selected_cell = None
 
-    def __init__(self, matrix, theme=Theme()):
+    def __init__(self, data, theme=Theme(), dim=Dimensions()):
         super().__init__()
 
-        self.matrix = matrix
-        self.n = len(self.matrix)
-        self.divider = math.isqrt(self.n)
+        self.n = data["n"]
+        self.divider = data["divider"]
+        self.grille = data["grille"]
 
-        self.setFixedSize(600, 600)
+        self.setFixedSize(dim.grille[str(self.n)], dim.grille[str(self.n)])
         self.theme = theme
 
         self.grid_layout = QGridLayout()
@@ -34,7 +35,7 @@ class Grille(QWidget):
         for i in range(0, self.n):
             for y in range(0, self.n):
                 inner_layout = self.grid_layout.itemAtPosition(i // self.divider, y // self.divider)
-                cell = Cellule(self.matrix[i][y])
+                cell = Cellule(self.grille[i][y], self.divider)
                 cell.selected_signal.connect(self.unselectCell)
                 inner_layout.addLayout(cell, i % self.divider, y % self.divider)
                 self.cells.append(cell)
@@ -51,7 +52,7 @@ class Grille(QWidget):
 
     def updateCellValue(self, valeur):
         if self.selected_cell is not None:
-            self.selected_cell.updateValue(valeur)
+            self.selected_cell.updateValue(int(valeur))
 
 
 
