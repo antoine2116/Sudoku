@@ -60,7 +60,6 @@ class MainWindow(QMainWindow):
         seizparseize_action.triggered.connect(partial(self.nouvellePartieCallback, 16))
         nouvelle_partie_menu.addAction(seizparseize_action)
 
-        # TODO fenetre pour nom fichier si on a pas déjà un partie
         sauvegarder_action = QAction("Sauvegarder", self)
         sauvegarder_action.triggered.connect(self.sauvegarderCallback)
         partie_menu.addAction(sauvegarder_action)
