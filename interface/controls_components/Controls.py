@@ -4,16 +4,16 @@ from interface.controls_components.Button import Button
 from interface.controls_components.ButtonIndice import ButtonIndice
 from interface.controls_components.ButtonValeur import ButtonValeur
 from interface.controls_components.Timer import Timer
-from interface.tools.theme import Theme
+from interface.styles.Theme import Theme
 
 
 class Controls(QWidget):
-    def __init__(self, n, theme=Theme()):
+    def __init__(self, n, timer_data, theme=Theme()):
         super().__init__()
         self.theme = theme
         v_boxlayout = QVBoxLayout()
         self.setLayout(v_boxlayout)
-        self.timer = Timer()
+        self.timer = Timer(timer_data)
         v_boxlayout.addWidget(self.timer)
 
         grid_layout = QGridLayout()

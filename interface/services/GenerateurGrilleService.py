@@ -1,8 +1,9 @@
 from math import isqrt
 from random import sample
 
+
 # Une partie du programme provient d'un post StackOverflow (https://stackoverflow.com/questions/45471152/how-to-create-a-sudoku-puzzle-in-python)
-class GenerateurGrille:
+class GenerateurGrilleService:
     def __init__(self, n):
         self.n = n
         self.divider = isqrt(n)
@@ -47,6 +48,7 @@ class GenerateurGrille:
         soduku_data = {
             "n": self.n,
             "divider": self.divider,
+            "timer": [0, 0, 0],
             "grille": grille_data
         }
 

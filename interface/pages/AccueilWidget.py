@@ -1,7 +1,9 @@
+from os import listdir
+from os.path import isfile, join
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QGridLayout, QPushButton, QComboBox
 
-from interface.tools.theme import Theme
+from interface.styles.Theme import Theme
 
 
 class AccueilWidget(QWidget):
@@ -38,8 +40,11 @@ class AccueilWidget(QWidget):
         charger_partie.setStyleSheet(theme.accueil_label)
         grid_layout.addWidget(charger_partie, 1, 0)
 
-        combo_files = QComboBox()
-        grid_layout.addWidget(combo_files, 1, 1)
+        self.combo_files = QComboBox()
+        self.combo_files.setStyleSheet(theme.combo_files)
+        files = [f.replace(".json", "") for f in listdir("./storage/") if isfile(join("./storage/", f))]
+        self.combo_files.addItems(files)
+        grid_layout.addWidget(self.combo_files, 1, 1)
 
         self.btn_charger = QPushButton()
         self.btn_charger.setText("Ok")

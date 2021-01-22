@@ -13,7 +13,7 @@ class Grille:
 
         path_joueur = 'grilles/joueurs/grille_' + str(n) + '0.json'
         path_indices = 'grilles/joueurs/grilleIndices' + str(n) + '.json'
-        path_solution = 'grilles/solutions/grille_' + str(n) + '0.json'
+        path_solution = 'grilles/solutions/grille_' + str(n) + '.json'
 
         # Si on a un fichier joueur, on l'ouvre
         if os.path.isfile(path_joueur):

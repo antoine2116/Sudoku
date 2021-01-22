@@ -2,8 +2,8 @@ from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QCursor
 from PyQt5.QtWidgets import QLineEdit
 
-from interface.tools.Dimensions import Dimensions
-from interface.tools.theme import Theme
+from interface.styles.Dimensions import Dimensions
+from interface.styles.Theme import Theme
 
 
 class CelluleValeur(QLineEdit):

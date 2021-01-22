@@ -1,13 +1,13 @@
 from PyQt5.QtCore import QSize, QTimer, QTime
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QPushButton, QVBoxLayout, QStyle, QLabel
 
-from interface.tools.theme import Theme
+from interface.styles.Theme import Theme
 
 
 class Timer(QWidget):
     paused = False
 
-    def __init__(self, theme=Theme()):
+    def __init__(self, timer_data, theme=Theme()):
         super().__init__()
         self.theme = theme
         self.box_layout = QHBoxLayout()
@@ -26,7 +26,7 @@ class Timer(QWidget):
         self.button.clicked.connect(self.btnClicked)
         self.box_layout.addWidget(self.button)
 
-        self.curr_time = QTime(0, 0, 0)
+        self.curr_time = QTime(timer_data[0], timer_data[1], timer_data[2])
         self.timer = QTimer()
         self.timer.timeout.connect(self.updateTime)
         self.timer.start(1000)

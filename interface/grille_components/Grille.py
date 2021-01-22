@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QGridLayout
 from interface.grille_components.Cellule import Cellule
-from interface.tools.Dimensions import Dimensions
-from interface.tools.theme import Theme
+from interface.styles.Dimensions import Dimensions
+from interface.styles.Theme import Theme
 import math
 
 class Grille(QWidget):
@@ -13,7 +13,6 @@ class Grille(QWidget):
         self.n = data["n"]
         self.divider = data["divider"]
         self.grille = data["grille"]
-
         self.setFixedSize(dim.grille[str(self.n)], dim.grille[str(self.n)])
         self.theme = theme
 

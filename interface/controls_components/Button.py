@@ -2,7 +2,7 @@ from PyQt5 import QtCore
 from PyQt5.QtGui import QCursor
 from PyQt5.QtWidgets import *
 
-from interface.tools.theme import Theme
+from interface.styles.Theme import Theme
 
 
 class Button(QPushButton):

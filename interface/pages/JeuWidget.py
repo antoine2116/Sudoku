@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QWidget, QHBoxLayout, QMainWindow
 
 from interface.controls_components.Controls import Controls
 from interface.grille_components.Grille import Grille
-from interface.tools.theme import Theme
+from interface.styles.Theme import Theme
 
 
 class JeuWidget(QWidget):
@@ -13,8 +13,7 @@ class JeuWidget(QWidget):
         self.box_layout = QHBoxLayout()
         self.setLayout(self.box_layout)
 
-
-        self.controls = Controls(data["divider"])
+        self.controls = Controls(data["divider"], data["timer"])
         self.grille = Grille(data)
 
         self.box_layout.addWidget(self.grille)

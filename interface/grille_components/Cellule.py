@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QGridLayout
 
 from interface.grille_components.CelluleValeur import CelluleValeur
 from interface.grille_components.CelluleIndice import CelluleIndice
-from interface.tools.theme import Theme
+from interface.styles.Theme import Theme
 
 
 class Cellule(QGridLayout):
@@ -16,6 +16,7 @@ class Cellule(QGridLayout):
         self.theme = theme
         self.cell_data = cell_data
         self.divider = divider
+
         self.fixed = self.cell_data["afficher_solution"] or self.cell_data["verifie"]
         self.generateComponents()
         self.displayValeur()
@@ -29,14 +30,16 @@ class Cellule(QGridLayout):
 
         self.cells_indices = []
         if not self.fixed:
+            cpt = 0
             for i in range(0, 3):
                 for y in range(0, 3):
-                    if i+y < len(self.cell_data["indices"]):
-                        cell_indice = CelluleIndice(i + y)
+                    if cpt < len(self.cell_data["indices"]):
+                        cell_indice = CelluleIndice(cpt + 1)
                     else:
                         cell_indice = CelluleIndice()
                     cell_indice.selected_signal.connect(self.selectCell)
                     self.cells_indices.append(cell_indice)
+                    cpt = cpt + 1
 
     def displayValeur(self):
         self.removeAllWidgets()

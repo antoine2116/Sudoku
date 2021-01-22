@@ -5,8 +5,9 @@ class Theme:
 
     accueil_titre = (
         'QLabel {'
-        'font-size: 40pt;'
+        'font-size: 50pt;'
         'color: white;'
+        'margin: 100px 200px'
         '}'
     )
 
@@ -17,7 +18,6 @@ class Theme:
         '}'
     )
 
-
     nouvelle_partie_button = (
         'QPushButton {'
         'color: #fff;'
@@ -25,7 +25,7 @@ class Theme:
         'border-color: #484e54;'
         'border-radius: 5px;'
         'font-size: 18pt;'
-        'height: 70px;'
+        'height: 60px;'
         '}'
 
         'QPushButton:hover {'
@@ -34,6 +34,20 @@ class Theme:
 
         'QPushButton:pressed {'
         'background-color: #4c5359;'
+        '}'
+    )
+
+    combo_files = (
+        'QComboBox {'
+            'font-size: 18pt;'
+            'color: black;'
+            'background-color: white;'
+            'selection-background-color: #6c757d;'
+        '}'
+        
+        'QListView {'
+            'color: black;'
+            'background-color: white;'
         '}'
     )
 
@@ -157,4 +171,19 @@ class Theme:
     timer_label = (
         'font-size: 30pt;'
         'color: white;'
+    )
+
+    popup_file_name = (
+        'QInputDialog {'
+        'background-color: white !important;'
+        '}'
+        
+        'QLabel {'
+        'font-size: 12pt;'
+        '}'
+        
+        'QLineEdit {'
+        'font-size: 13pt;'
+        '}'
+
     )

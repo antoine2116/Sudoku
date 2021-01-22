@@ -2,7 +2,7 @@ from PyQt5 import QtCore
 from PyQt5.QtGui import QCursor
 
 from interface.controls_components.Button import Button
-from interface.tools.theme import Theme
+from interface.styles.Theme import Theme
 
 
 class ButtonIndice(Button):
