@@ -1,5 +1,6 @@
 import sys
 
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication
 
 from functools import partial
@@ -7,6 +8,7 @@ from functools import partial
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QAction, qApp, QMenu
 
+from interface.popups.PopupDifficulte import PopupDifficulte
 from interface.services.GenerateurGrilleService import GenerateurGrilleService
 from interface.pages.AccueilWidget import AccueilWidget
 from interface.pages.JeuWidget import JeuWidget
@@ -25,7 +27,9 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.theme = theme
         self.dim = dim
-        self.setWindowTitle('Soduku')
+        self.setWindowTitle('Sudoku')
+        self.setFixedSize(700, 550)
+        self.setWindowIcon(QIcon("../images/logo_base.png"))
         self.setStyleSheet(self.theme.main_background)
 
         self.initAccueil()
@@ -69,22 +73,37 @@ class MainWindow(QMainWindow):
         partie_menu.addAction(quitter_action)
 
         # Menu resoudre
-        resoudre = self.bar.addMenu("Résoudre")
-        resoudre.addAction("Brute Force")
-        resoudre.addAction("Back Track")
+        resoudre_menu = self.bar.addMenu("Résoudre")
+        resoudre_menu.setStyleSheet(self.theme.menu_bar)
+
+        check_grid = QAction("Vérifié la grille", self)
+        check_grid.triggered.connect(self.checkGridCallback)
+        resoudre_menu.addAction(check_grid)
+
+        brute_foce = QAction("Brute Force", self)
+        brute_foce.triggered.connect(self.bruteForceCallback)
+        resoudre_menu.addAction(brute_foce)
+
+        back_track = QAction("Back Track", self)
+        back_track.triggered.connect(self.backTrackCallback)
+        resoudre_menu.addAction(back_track)
 
         self.bar.setVisible(False)
 
     def accueilCallback(self):
         self.accueil_widget = AccueilWidget()
         self.setCentralWidget(self.accueil_widget)
-        self.bar.setVisible(False)
 
     def nouvellePartieCallback(self, n):
-        generateur = GenerateurGrilleService(n)
-        data = generateur.generate()
-        self.setFixedSize(self.dim.window_w[str(n)], self.dim.window_h[str(n)])
-        self.startJeuWidget(data)
+        popup_difficulte = PopupDifficulte()
+        if popup_difficulte.exec_() == QtWidgets.QDialog.Accepted:
+            generateur = GenerateurGrilleService(n)
+            data = generateur.generate(popup_difficulte.textValue())
+            self.setFixedSize(self.dim.window_w[str(n)], self.dim.window_h[str(n)])
+            self.startJeuWidget(data)
+        else:
+            return
+
 
     def sauvegarderCallback(self):
         if self.file_name == "":
@@ -95,23 +114,33 @@ class MainWindow(QMainWindow):
                 return
         try:
             self.save_service.saveData(self.file_name, self.jeu_widget)
-            popup = PopupInfo(True, "Partie sauvegardée avec succès")
+            self.file_name = ""
+            PopupInfo(True, "Partie sauvegardée avec succès")
         except EnvironmentError:
-            popup = PopupInfo(False, "Une erreur est survenue lors de la sauvegarde")
+            PopupInfo(False, "Une erreur est survenue lors de la sauvegarde")
 
     def chargerPartieCallback(self):
         self.file_name = self.accueil_widget.combo_files.currentText()
         if self.file_name == "":
-            popup = PopupInfo(False, "Aucun fichier sélectionné")
+            PopupInfo(False, "Aucun fichier sélectionné")
         else:
             data = self.save_service.getData(self.file_name)
             self.startJeuWidget(data)
+
+    def checkGridCallback(self):
+        success, fails = self.jeu_widget.grille.solveur.checkGrille()
+        PopupInfo(True, "Résultat : %d succès et %d erreurs" % (success, fails))
+
+    def bruteForceCallback(self):
+        pass
+
+    def backTrackCallback(self):
+        pass
 
     def startJeuWidget(self, data):
         self.jeu_widget = JeuWidget(data)
         self.setCentralWidget(self.jeu_widget)
         self.bar.setVisible(True)
-
 
 def main():
     app = QApplication(sys.argv)

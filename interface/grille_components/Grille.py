@@ -1,15 +1,17 @@
 from PyQt5.QtWidgets import QWidget, QGridLayout
 from interface.grille_components.Cellule import Cellule
+from interface.popups.PopupInfo import PopupInfo
+from interface.services.SolveurService import SolveurService
 from interface.styles.Dimensions import Dimensions
 from interface.styles.Theme import Theme
-import math
+
 
 class Grille(QWidget):
     selected_cell = None
+    paused = False
 
     def __init__(self, data, theme=Theme(), dim=Dimensions()):
         super().__init__()
-
         self.n = data["n"]
         self.divider = data["divider"]
         self.grille = data["grille"]
@@ -22,36 +24,49 @@ class Grille(QWidget):
 
         self.cells = []
         self.initialiseGrille()
+        self.solveur = SolveurService(self)
 
     def initialiseGrille(self):
-        for i in range(0, self.divider):
-            for y in range(0, self.divider):
+        for r in range(0, self.divider):
+            for c in range(0, self.divider):
                 inner_layout = QGridLayout()
                 inner_layout.setContentsMargins(0, 0, 0, 0)
                 inner_layout.setSpacing(1)
-                self.grid_layout.addLayout(inner_layout, i, y)
+                self.grid_layout.addLayout(inner_layout, r, c)
 
-        for i in range(0, self.n):
-            for y in range(0, self.n):
-                inner_layout = self.grid_layout.itemAtPosition(i // self.divider, y // self.divider)
-                cell = Cellule(self.grille[i][y], self.divider)
+        for r in range(0, self.n):
+            for c in range(0, self.n):
+                inner_layout = self.grid_layout.itemAtPosition(r // self.divider, c // self.divider)
+                cell = Cellule(self.grille[r][c], self.divider, r, c)
+                cell.cell_valeur.value_changed_signal.connect(self.autoComplete)
+
                 cell.selected_signal.connect(self.unselectCell)
-                inner_layout.addLayout(cell, i % self.divider, y % self.divider)
+                inner_layout.addLayout(cell, r % self.divider, c % self.divider)
                 self.cells.append(cell)
 
     def toggleCellsDisplay(self):
-        for cell in self.cells:
+        for cell in [cell for cell in self.cells if not cell.fixed]:
             cell.toggleCellDisplay()
 
     def unselectCell(self):
         if self.selected_cell is not None:
             self.selected_cell.unselect()
-
         self.selected_cell = next((cell for cell in self.cells if cell.selected), None)
 
     def updateCellValue(self, valeur):
-        if self.selected_cell is not None:
-            self.selected_cell.updateValue(int(valeur))
+        if self.paused:
+            PopupInfo(False, "Le jeu est en pause")
+        elif self.selected_cell is not None:
+            self.selected_cell.updateValue(valeur)
 
+    def pause(self):
+        self.paused = not self.paused
 
+    def displayPossibilitesCallback(self):
+        symbols = ["", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G"]
+        possibilites = self.solveur.getPossibilites(self.selected_cell)
+        str_poss = [symbols[s] for s in possibilites]
+        PopupInfo(True, "Possiblité dans cette case : " + ", ".join(str_poss))
 
+    def autoComplete(self):
+        self.solveur.autoComplete(self.selected_cell)

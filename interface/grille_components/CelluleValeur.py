@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtGui import QCursor
+from PyQt5.QtGui import QCursor, QMouseEvent
 from PyQt5.QtWidgets import QLineEdit
 
 from interface.styles.Dimensions import Dimensions
@@ -8,6 +8,7 @@ from interface.styles.Theme import Theme
 
 class CelluleValeur(QLineEdit):
     selected_signal = pyqtSignal()
+    value_changed_signal = pyqtSignal()
     value = 0
 
     def __init__(self, fixed, valeur, verifie=False, theme=Theme(), dim=Dimensions()):
@@ -20,11 +21,13 @@ class CelluleValeur(QLineEdit):
         self.fixed = fixed
         self.verifie = verifie
         self.setValue(valeur)
-
         self.updateTextColor()
 
     def keyPressEvent(self, event):
-        return
+        if event.key() < Qt.Key_1 or event.key() > Qt.Key_9:
+            return
+        elif not self.fixed:
+            self.setValue(int(event.text()))
 
     def focusInEvent(self, event):
         if not self.fixed:
@@ -36,6 +39,7 @@ class CelluleValeur(QLineEdit):
         symbols = ["", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G"]
         self.setText(symbols[valeur])
         self.value = valeur
+        self.value_changed_signal.emit()
 
     def updateTextColor(self):
         if self.fixed:
@@ -45,5 +49,7 @@ class CelluleValeur(QLineEdit):
         else:
             self.setStyleSheet(self.theme.cellule_valeur)
 
-
-
+    def setVerifie(self, verifie):
+        self.verifie = verifie
+        self.fixed = verifie
+        self.updateTextColor()

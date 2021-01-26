@@ -1,7 +1,7 @@
 class Dimensions:
     window_h = {
-        "9": 500,
-        "16": 800,
+        "9": 550,
+        "16": 850,
     }
 
     window_w = {

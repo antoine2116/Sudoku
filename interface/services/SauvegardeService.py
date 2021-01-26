@@ -10,7 +10,6 @@ class SauvegardeService:
 
     def getData(self, file_name):
         path = self.storage_dir + file_name + self.ext
-        print(path)
         with open(path, "r") as file:
             return json.load(file)
 
@@ -30,8 +29,8 @@ class SauvegardeService:
                 for cell_indice in [c for c in cells_indices if c.value != 0]:
                     indices.append(cell_indice.value)
 
-                joueur = cell_valeur.value if not cellule.fixed else 0
-                solution = cell_valeur.value if cellule.fixed else 0
+                joueur = cell_valeur.value if (cellule.fixed and cellule.verifie) or not cellule.fixed else 0
+                solution = cell_valeur.value if cellule.fixed and not cellule.verifie else 0
                 afficher_solution = solution != 0
                 verifie = cell_valeur.verifie
 

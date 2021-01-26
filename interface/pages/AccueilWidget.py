@@ -1,6 +1,7 @@
 from os import listdir
 from os.path import isfile, join
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QGridLayout, QPushButton, QComboBox
 
 from interface.styles.Theme import Theme
@@ -12,8 +13,14 @@ class AccueilWidget(QWidget):
         vbox_layout = QVBoxLayout()
         self.setLayout(vbox_layout)
 
+        logo = QLabel()
+        logo.setPixmap(QPixmap("../images/logo_smaller.png"))
+        logo.setStyleSheet(theme.accueil_logo)
+        logo.setAlignment(Qt.AlignCenter)
+        vbox_layout.addWidget(logo)
+
         titre = QLabel()
-        titre.setText("SODUKU")
+        titre.setText("SUDOKU")
         titre.setStyleSheet(theme.accueil_titre)
         titre.setAlignment(Qt.AlignCenter)
         vbox_layout.addWidget(titre)

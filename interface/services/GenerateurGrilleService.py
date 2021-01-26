@@ -14,7 +14,7 @@ class GenerateurGrilleService:
     def shuffle(self, s):
         return sample(s, len(s))
 
-    def generate(self):
+    def generate(self, difficulte):
         # On génère la grille complète
         rDivdier = range(self.divider)
         rows = [g * self.divider + r for g in self.shuffle(rDivdier) for r in self.shuffle(rDivdier)]
@@ -24,21 +24,22 @@ class GenerateurGrilleService:
         self.grille = [[nums[self.pattern(r, c)] for c in cols] for r in rows]
 
         # On enlève certaines cellules
+        diff = 3 if difficulte == "Difficile" else 2
         blocks = self.n * self.n
-        empties = blocks * 3 // 4
+        empties = blocks * diff // 4
         for p in sample(range(blocks), empties):
             self.grille[p // self.n][p % self.n] = 0
 
         # On convertit la matrix en json
         grille_data = []
-        for x in range(0, self.n):
+        for r in range(0, self.n):
             line = []
-            for y in range(0, self.n):
+            for c in range(0, self.n):
                 cell = {
                     "indices": [],
                     "joueur": 0,
-                    "solution": abs(self.grille[x][y]),
-                    "afficher_solution": self.grille[x][y] != 0,
+                    "solution": self.grille[r][c],
+                    "afficher_solution": self.grille[r][c] != 0,
                     "verifie": False
                 }
                 line.append(cell)

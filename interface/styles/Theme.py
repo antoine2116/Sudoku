@@ -3,11 +3,17 @@ class Theme:
         'background-color : #17181c;'
     )
 
+    accueil_logo = (
+        'QLabel {'
+        'margin-top: 30px;'
+        '}'
+    )
+
     accueil_titre = (
         'QLabel {'
         'font-size: 50pt;'
         'color: white;'
-        'margin: 100px 200px'
+        'margin: 30px 150px 80px 150px'
         '}'
     )
 
@@ -20,8 +26,8 @@ class Theme:
 
     nouvelle_partie_button = (
         'QPushButton {'
-        'color: #fff;'
-        'background-color: #6c757d;'
+        'color: #4a4a4a;'
+        'background-color: #9cb8ff;'
         'border-color: #484e54;'
         'border-radius: 5px;'
         'font-size: 18pt;'
@@ -29,25 +35,25 @@ class Theme:
         '}'
 
         'QPushButton:hover {'
-        'background-color: #535b61;'
+        'background-color: #7a9efa;'
         '}'
 
         'QPushButton:pressed {'
-        'background-color: #4c5359;'
+        'background-color: #6d94f7;'
         '}'
     )
 
     combo_files = (
         'QComboBox {'
-            'font-size: 18pt;'
-            'color: black;'
-            'background-color: white;'
-            'selection-background-color: #6c757d;'
+        'font-size: 18pt;'
+        'color: black;'
+        'background-color: white;'
+        'selection-background-color: #6c757d;'
         '}'
-        
+
         'QListView {'
-            'color: black;'
-            'background-color: white;'
+        'color: black;'
+        'background-color: white;'
         '}'
     )
 
@@ -62,7 +68,7 @@ class Theme:
 
     cellule_valeur = (
         'QLineEdit {'
-        'color: #062673;'
+        'color: #1c56e6;'
         'font-size: 17pt;'
         'background-color :white;'
         'border: none;'
@@ -88,11 +94,11 @@ class Theme:
     cellule_valeur_focused = (
         'QLineEdit {'
         'border: none;'
-        'background-color : #a4d0fc !important;'
+        'background-color : #b0b0b0 !important;'
         '}'
 
         'QLineEdit::hover {'
-        'background-color : #75a3d1 !important;'
+        'background-color : #8a8a8a !important;'
         '}'
     )
 
@@ -130,9 +136,25 @@ class Theme:
         '}'
     )
 
-    button_indice = (
+    button_font_smaller = (
         'QPushButton {'
         'font-size: 13pt !important;'
+        '}'
+    )
+
+    button_supprimer = (
+        'QPushButton {'
+        'color: #1c1c1c;'
+        'font-size: 30pt;'
+        'background-color: #c22f2f;'
+        '}'
+
+        'QPushButton:hover {'
+        'background-color: #b32222;'
+        '}'
+        
+        'QPushButton:pressed {'
+        'background-color: #bd1a1a;'
         '}'
     )
 
@@ -177,13 +199,16 @@ class Theme:
         'QInputDialog {'
         'background-color: white !important;'
         '}'
-        
+
         'QLabel {'
-        'font-size: 12pt;'
-        '}'
-        
-        'QLineEdit {'
-        'font-size: 13pt;'
+        'font-size: 11pt;'
         '}'
 
+        'QLineEdit {'
+        'font-size: 12pt;'
+        '}'
+
+        'QComboBox {'
+        'font-size: 12pt;'
+        '}'
     )

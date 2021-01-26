@@ -10,29 +10,34 @@ class Cellule(QGridLayout):
     selected = False
     selected_signal = pyqtSignal()
 
-    def __init__(self, cell_data, divider, theme=Theme()):
+    def __init__(self, cell_data, divider, r, c, theme=Theme()):
         super(QGridLayout, self).__init__()
         self.setSpacing(0)
         self.theme = theme
         self.cell_data = cell_data
         self.divider = divider
+        self.r = r
+        self.c = c
 
         self.fixed = self.cell_data["afficher_solution"] or self.cell_data["verifie"]
+        self.verifie = self.cell_data["verifie"]
         self.generateComponents()
         self.displayValeur()
 
     def generateComponents(self):
-        if self.fixed:
-            self.cell_valeur = CelluleValeur(True, self.cell_data["solution"], self.cell_data["verifie"])
+        if self.fixed and not self.verifie:
+            self.cell_valeur = CelluleValeur(True, self.cell_data["solution"], False)
+        elif self.verifie:
+            self.cell_valeur = CelluleValeur(True, self.cell_data["joueur"], True)
         else:
-            self.cell_valeur = CelluleValeur(False, self.cell_data["joueur"])
+            self.cell_valeur = CelluleValeur(False, self.cell_data["joueur"], False)
         self.cell_valeur.selected_signal.connect(self.selectCell)
 
         self.cells_indices = []
         if not self.fixed:
             cpt = 0
-            for i in range(0, 3):
-                for y in range(0, 3):
+            for r in range(0, 3):
+                for c in range(0, 3):
                     if cpt < len(self.cell_data["indices"]):
                         cell_indice = CelluleIndice(cpt + 1)
                     else:
@@ -49,9 +54,9 @@ class Cellule(QGridLayout):
         if not self.fixed:
             self.removeAllWidgets()
             cpt = 0
-            for i in range(0, 3):
-                for y in range(0, 3):
-                    self.addWidget(self.cells_indices[cpt], i, y)
+            for r in range(0, 3):
+                for c in range(0, 3):
+                    self.addWidget(self.cells_indices[cpt], r, c)
                     cpt = cpt + 1
 
     def toggleCellDisplay(self):
@@ -73,7 +78,7 @@ class Cellule(QGridLayout):
 
     def unselect(self):
         self.selected = False
-        self.cell_valeur.setStyleSheet(self.theme.cellule_valeur)
+        self.cell_valeur.updateTextColor()
         for cell_indice in self.cells_indices:
             cell_indice.setStyleSheet(self.theme.cellule_indice)
 
