@@ -27,8 +27,8 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.theme = theme
         self.dim = dim
-        self.setWindowTitle('Sudoku')
         self.setFixedSize(700, 550)
+        self.setWindowTitle('Sudoku')
         self.setWindowIcon(QIcon("../images/logo_base.png"))
         self.setStyleSheet(self.theme.main_background)
 
@@ -38,6 +38,9 @@ class MainWindow(QMainWindow):
     def initAccueil(self):
         self.accueil_widget = AccueilWidget()
         self.setCentralWidget(self.accueil_widget)
+        self.connectControlsAccueil()
+
+    def connectControlsAccueil(self):
         self.accueil_widget.btn_9x9.clicked.connect(partial(self.nouvellePartieCallback, 9))
         self.accueil_widget.btn_16x16.clicked.connect(partial(self.nouvellePartieCallback, 16))
         self.accueil_widget.btn_charger.clicked.connect(self.chargerPartieCallback)
@@ -50,7 +53,7 @@ class MainWindow(QMainWindow):
         partie_menu = self.bar.addMenu("Partie")
 
         accueil_action = QAction("Accueil", self)
-        accueil_action.triggered.connect(self.initAccueil)
+        accueil_action.triggered.connect(self.accueilCallback)
         partie_menu.addAction(accueil_action)
 
         nouvelle_partie_menu = QMenu("Nouvelle partie", self)
@@ -73,26 +76,29 @@ class MainWindow(QMainWindow):
         partie_menu.addAction(quitter_action)
 
         # Menu resoudre
-        resoudre_menu = self.bar.addMenu("Résoudre")
-        resoudre_menu.setStyleSheet(self.theme.menu_bar)
+        solver_menu = self.bar.addMenu("Solveur")
+        solver_menu.setStyleSheet(self.theme.menu_bar)
 
-        check_grid = QAction("Vérifié la grille", self)
+        check_grid = QAction("Vérifier la grille", self)
         check_grid.triggered.connect(self.checkGridCallback)
-        resoudre_menu.addAction(check_grid)
+        solver_menu.addAction(check_grid)
 
         brute_foce = QAction("Brute Force", self)
         brute_foce.triggered.connect(self.bruteForceCallback)
-        resoudre_menu.addAction(brute_foce)
+        solver_menu.addAction(brute_foce)
 
         back_track = QAction("Back Track", self)
         back_track.triggered.connect(self.backTrackCallback)
-        resoudre_menu.addAction(back_track)
+        solver_menu.addAction(back_track)
 
         self.bar.setVisible(False)
 
     def accueilCallback(self):
+        self.setFixedSize(700, 550)
         self.accueil_widget = AccueilWidget()
+        self.connectControlsAccueil()
         self.setCentralWidget(self.accueil_widget)
+        self.bar.setVisible(False)
 
     def nouvellePartieCallback(self, n):
         popup_difficulte = PopupDifficulte()
@@ -103,7 +109,6 @@ class MainWindow(QMainWindow):
             self.startJeuWidget(data)
         else:
             return
-
 
     def sauvegarderCallback(self):
         if self.file_name == "":
@@ -132,15 +137,18 @@ class MainWindow(QMainWindow):
         PopupInfo(True, "Résultat : %d succès et %d erreurs" % (success, fails))
 
     def bruteForceCallback(self):
-        pass
+        self.jeu_widget.grille.solveur.loadGrilleData()
+        self.jeu_widget.grille.solveur.solveByBruteForce()
 
     def backTrackCallback(self):
-        pass
+        self.jeu_widget.grille.solveur.loadGrilleData()
+        self.jeu_widget.grille.solveur.solveByBackTracking()
 
     def startJeuWidget(self, data):
         self.jeu_widget = JeuWidget(data)
         self.setCentralWidget(self.jeu_widget)
         self.bar.setVisible(True)
+
 
 def main():
     app = QApplication(sys.argv)

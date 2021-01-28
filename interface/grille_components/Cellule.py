@@ -86,14 +86,17 @@ class Cellule(QGridLayout):
         if self.count() == 1:
             self.cell_valeur.setValue(valeur)
         else:
-            existing_indice = next((cell for cell in self.cells_indices if cell.value == valeur), None)
-            if existing_indice is not None:
-                existing_indice.setValue(0)
+            if valeur != 0:
+                existing_indice = next((cell for cell in self.cells_indices if cell.value == valeur), None)
+                if existing_indice is not None:
+                    existing_indice.setValue(0)
+                else:
+                    empty_indice = next((cell for cell in self.cells_indices if cell.value == 0), None)
+                    if empty_indice is not None:
+                        empty_indice.setValue(valeur)
             else:
-                empty_indice = next((cell for cell in self.cells_indices if cell.value == 0), None)
-                if empty_indice is not None:
-                    empty_indice.setValue(valeur)
-
+                for cell_indice in self.cells_indices:
+                    cell_indice.setValue(0)
 
 
 

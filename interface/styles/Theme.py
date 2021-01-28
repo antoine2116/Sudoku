@@ -94,25 +94,25 @@ class Theme:
     cellule_valeur_focused = (
         'QLineEdit {'
         'border: none;'
-        'background-color : #b0b0b0 !important;'
+        'background-color : #d6d6d6 !important;'
         '}'
 
         'QLineEdit::hover {'
-        'background-color : #8a8a8a !important;'
+        'background-color : #c4c2c2 !important;'
         '}'
     )
 
     cellule_indice_focused = (
         'QLineEdit {'
         'border: none;'
-        'background-color : #a4d0fc !important;'
+        'background-color : #d6d6d6 !important;'
         '}'
     )
 
     cellule_indice = (
         'QLineEdit {'
         'background-color: white;'
-        'color: #3d3d3d;'
+        'color: #1c56e6;'
         'border: none;'
         '}'
     )
@@ -146,15 +146,15 @@ class Theme:
         'QPushButton {'
         'color: #1c1c1c;'
         'font-size: 30pt;'
-        'background-color: #c22f2f;'
+        'background-color: #d64040;'
         '}'
 
         'QPushButton:hover {'
-        'background-color: #b32222;'
+        'background-color: #c73232;'
         '}'
         
         'QPushButton:pressed {'
-        'background-color: #bd1a1a;'
+        'background-color: #c92828;'
         '}'
     )
 

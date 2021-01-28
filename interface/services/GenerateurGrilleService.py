@@ -30,7 +30,7 @@ class GenerateurGrilleService:
         for p in sample(range(blocks), empties):
             self.grille[p // self.n][p % self.n] = 0
 
-        # On convertit la matrix en json
+        # On convertit la matrice en json
         grille_data = []
         for r in range(0, self.n):
             line = []

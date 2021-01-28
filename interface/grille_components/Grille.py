@@ -63,10 +63,15 @@ class Grille(QWidget):
         self.paused = not self.paused
 
     def displayPossibilitesCallback(self):
-        symbols = ["", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G"]
-        possibilites = self.solveur.getPossibilites(self.selected_cell)
-        str_poss = [symbols[s] for s in possibilites]
-        PopupInfo(True, "Possiblité dans cette case : " + ", ".join(str_poss))
+        self.solveur.loadGrilleData()
+        possibilites = self.solveur.getPossibilites(self.selected_cell.r, self.selected_cell.c)
+        if not possibilites:
+            message = "Aucune possibilité trouvée"
+        else:
+            symbols = ["", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G"]
+            str_poss = [symbols[s] for s in possibilites]
+            message = "Possiblités dans cette case : " + ", ".join(str_poss)
+        PopupInfo(True, message)
 
     def autoComplete(self):
         self.solveur.autoComplete(self.selected_cell)

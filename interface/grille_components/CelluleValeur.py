@@ -49,7 +49,3 @@ class CelluleValeur(QLineEdit):
         else:
             self.setStyleSheet(self.theme.cellule_valeur)
 
-    def setVerifie(self, verifie):
-        self.verifie = verifie
-        self.fixed = verifie
-        self.updateTextColor()
