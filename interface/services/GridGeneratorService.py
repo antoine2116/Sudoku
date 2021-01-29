@@ -2,9 +2,18 @@ from math import isqrt
 from random import sample
 
 
-# Une partie du programme provient d'un post StackOverflow (https://stackoverflow.com/questions/45471152/how-to-create-a-sudoku-puzzle-in-python)
-class GenerateurGrilleService:
+class GridGeneratorService:
+    """
+    Generates grid and store it into a JSON object
+    A portion of the code was found here : https://stackoverflow.com/questions/45471152/how-to-create-a-sudoku-puzzle-in-python (Alain T.)
+    """
+
     def __init__(self, n):
+        """
+        Initializes propeties
+        :param n: size of the grid
+        """
+
         self.n = n
         self.divider = isqrt(n)
 
@@ -14,43 +23,42 @@ class GenerateurGrilleService:
     def shuffle(self, s):
         return sample(s, len(s))
 
-    def generate(self, difficulte):
-        # On génère la grille complète
+    def generate(self, difficulty):
+        # Generate the grid
         rDivdier = range(self.divider)
         rows = [g * self.divider + r for g in self.shuffle(rDivdier) for r in self.shuffle(rDivdier)]
         cols = [g * self.divider + c for g in self.shuffle(rDivdier) for c in self.shuffle(rDivdier)]
         nums = self.shuffle(range(1, self.divider * self.divider + 1))
 
-        self.grille = [[nums[self.pattern(r, c)] for c in cols] for r in rows]
+        self.grid = [[nums[self.pattern(r, c)] for c in cols] for r in rows]
 
-        # On enlève certaines cellules
-        diff = 3 if difficulte == "Difficile" else 2
+        # Removing some cell according to the difficulty
+        diff = 3 if difficulty == "Difficile" else 2
         blocks = self.n * self.n
         empties = blocks * diff // 4
         for p in sample(range(blocks), empties):
-            self.grille[p // self.n][p % self.n] = 0
+            self.grid[p // self.n][p % self.n] = 0
 
-        # On convertit la matrice en json
-        grille_data = []
+        # Converts matrix into a JSON object
+        grid_data = []
         for r in range(0, self.n):
             line = []
             for c in range(0, self.n):
                 cell = {
-                    "indices": [],
-                    "joueur": 0,
-                    "solution": self.grille[r][c],
-                    "afficher_solution": self.grille[r][c] != 0,
-                    "verifie": False
+                    "hints": [],
+                    "player": 0,
+                    "solution": self.grid[r][c],
+                    "display_solution": self.grid[r][c] != 0,
+                    "checked": False
                 }
                 line.append(cell)
-            grille_data.append(line)
+            grid_data.append(line)
 
-        # On crée le fichier
         soduku_data = {
             "n": self.n,
             "divider": self.divider,
             "timer": [0, 0, 0],
-            "grille": grille_data
+            "grid": grid_data
         }
 
         return soduku_data

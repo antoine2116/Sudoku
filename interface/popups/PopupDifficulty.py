@@ -4,9 +4,9 @@ from PyQt5.QtWidgets import QInputDialog
 from interface.styles.Style import Style
 
 
-class PopupFileName(QInputDialog):
+class PopupDifficulty(QInputDialog):
     """
-    Dialog allowing the user to enter a name for his save
+    Dialog allowing the user to choose the game diffuclty
     """
 
     def __init__(self, style=Style()):
@@ -18,8 +18,10 @@ class PopupFileName(QInputDialog):
         super().__init__()
 
         self.setStyleSheet(style.popup)
-        self.setWindowIcon(QIcon("../images/logo_base.png"))
-        self.setWindowTitle("Sauvegarder")
 
-        self.setLabelText("Entrer un nom de sauvegarde")
+        self.setWindowIcon(QIcon("../images/logo_base.png"))
+        self.setWindowTitle("Difficulté")
+
+        self.setLabelText("Choisir la difficulté")
+        self.setComboBoxItems(("Normal", "Difficile"))
         self.setCancelButtonText("Annuler")

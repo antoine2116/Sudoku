@@ -1,30 +1,46 @@
-class Theme:
+class Style:
+    """
+    Object that contains all the stytling propeties used through the soduku
+    """
+
+    # region Global
     main_background = (
         'background-color : #17181c;'
     )
 
-    accueil_logo = (
+    menu_bar = (
+        'QMenuBar {'
+        'background-color : #858585;'
+        '}'
+        'QMenu {'
+        'background-color : #858585;'
+        '}'
+    )
+
+    home_logo = (
         'QLabel {'
         'margin-top: 30px;'
         '}'
     )
+    # endregion
 
-    accueil_titre = (
+    # region Home
+    home_title = (
         'QLabel {'
         'font-size: 50pt;'
         'color: white;'
-        'margin: 30px 150px 80px 150px'
+        'margin: 30px 150px 80px 150px;'
         '}'
     )
 
-    accueil_label = (
+    home_label = (
         'QLabel {'
         'font-size: 18pt;'
         'color: white;'
         '}'
     )
 
-    nouvelle_partie_button = (
+    home_button = (
         'QPushButton {'
         'color: #4a4a4a;'
         'background-color: #9cb8ff;'
@@ -43,7 +59,7 @@ class Theme:
         '}'
     )
 
-    combo_files = (
+    combo_file = (
         'QComboBox {'
         'font-size: 18pt;'
         'color: black;'
@@ -56,17 +72,11 @@ class Theme:
         'background-color: white;'
         '}'
     )
+    # endregion
 
-    menu_bar = (
-        'QMenuBar {'
-        'background-color : #858585;'
-        '}'
-        'QMenu {'
-        'background-color : #858585;'
-        '}'
-    )
-
-    cellule_valeur = (
+    # region Cells
+    # Cell Value
+    cell_value = (
         'QLineEdit {'
         'color: #1c56e6;'
         'font-size: 17pt;'
@@ -79,19 +89,19 @@ class Theme:
         '}'
     )
 
-    cellule_valeur_verifie = (
+    cell_value_checked = (
         'QLineEdit {'
         'color: #078747;'
         '}'
     )
 
-    cellule_valeur_fixed = (
+    cell_value_fixed = (
         'QLineEdit {'
         'color: #242424 !important;'
         '}'
     )
 
-    cellule_valeur_focused = (
+    cell_value_selected = (
         'QLineEdit {'
         'border: none;'
         'background-color : #d6d6d6 !important;'
@@ -102,14 +112,8 @@ class Theme:
         '}'
     )
 
-    cellule_indice_focused = (
-        'QLineEdit {'
-        'border: none;'
-        'background-color : #d6d6d6 !important;'
-        '}'
-    )
-
-    cellule_indice = (
+    # Cell hint
+    cell_hint = (
         'QLineEdit {'
         'background-color: white;'
         'color: #1c56e6;'
@@ -117,7 +121,21 @@ class Theme:
         '}'
     )
 
-    button = (
+    cell_hint_selected = (
+        'QLineEdit {'
+        'border: none;'
+        'background-color : #d6d6d6 !important;'
+        '}'
+        
+        'QLineEdit::hover {'
+        'background-color : #d6d6d6 !important;'
+        '}'
+    )
+    # endregion
+
+    # region Controls Panel
+    # Controls buttons
+    controls_button = (
         'QPushButton {'
         'color: #fff;'
         'background-color: #6c757d;'
@@ -136,13 +154,13 @@ class Theme:
         '}'
     )
 
-    button_font_smaller = (
+    controls_button_smaller = (
         'QPushButton {'
         'font-size: 13pt !important;'
         '}'
     )
 
-    button_supprimer = (
+    controls_button_delete = (
         'QPushButton {'
         'color: #1c1c1c;'
         'font-size: 30pt;'
@@ -152,13 +170,13 @@ class Theme:
         'QPushButton:hover {'
         'background-color: #c73232;'
         '}'
-        
+
         'QPushButton:pressed {'
         'background-color: #c92828;'
         '}'
     )
 
-    button_indice_selected = (
+    controls_button_enabled = (
         'QPushButton {'
         'background-color: #24537d;'
         '}'
@@ -172,6 +190,7 @@ class Theme:
         '}'
     )
 
+    # Timer
     timer_button = (
         'QPushButton {'
         'background-color : #9cb8ff;'
@@ -194,8 +213,10 @@ class Theme:
         'font-size: 30pt;'
         'color: white;'
     )
+    # endregion
 
-    popup_file_name = (
+    # region Popup
+    popup = (
         'QInputDialog {'
         'background-color: white !important;'
         '}'
@@ -212,3 +233,25 @@ class Theme:
         'font-size: 12pt;'
         '}'
     )
+    # endregion
+
+    # region Sizing
+    window_h = {
+        "9": 550,
+        "16": 850,
+    }
+
+    window_w = {
+        "9": 800,
+        "16": 1200
+    }
+
+    grid_side = {
+        "9": 450,
+        "16": 765
+    }
+
+    cell_value_side = 42
+
+    cell_hint_side = 14
+    # endregion
